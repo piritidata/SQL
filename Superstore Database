@@ -30,11 +30,6 @@ VALUES
 #For this project I used SQL to query the Superstore databse to get information about items sold at the store, their prices and other statistics
     
 -- Write a SQL query that ORDERS the items by price
-SELECT *
-FROM superstore
-ORDER BY price DESC;
-
--- Write a SQL query that ORDERS the items by price
 SELECT item_name, price
 FROM superstore
 ORDER BY price DESC;
