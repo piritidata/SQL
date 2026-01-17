@@ -1,3 +1,5 @@
+#In this SQL set I'm creating queries to quantify statistics about data pertaining to customers & order information. The database is a sample dataset.
+
 -- Which products were sold in February at 548 Lincoln St, Seattle, WA 98101 and how many of each were sold and what was the total revenue?
 SELECT SUM(Quantity), product, sum(quantity)*price AS revenue
 FROM BIT_DB.FebSales
@@ -43,5 +45,6 @@ SELECT COUNT(DISTINCT orderid)
 FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
+
 
 
