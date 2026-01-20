@@ -106,6 +106,46 @@ SELECT employee_name
 FROM employees
 WHERE employee_name LIKE '%[anc]';
 
+-- Which product brought the most revenue in January and how much revenue in total?
+SELECT product, SUM(quantity*price)
+FROM BIT_DB.JanSales
+GROUP BY product
+ORDER BY sum(quantity*price) desc
+LIMIT 1;
+
+--Was given following results from May Sales, requested to reverse engineer a SQL query that returns these results (containing May Sale, locations and order ids)
+SELECT location, orderID
+FROM BIT_DB.MaySales
+WHERE orderID LIKE "1943_5"
+AND length(orderID) = 6
+AND orderID <> "Order ID"
+ORDER BY OrderID;
+
+-- Find order ids from Georgia (GA) where the order has an average price greater than $1000. Only find orders from dates beginning with "04/1". Assume the dates are stored in the MM/DD/YY HH:MM format
+SELECT orderID
+FROM BIT_DB.AprSales
+WHERE orderdate LIKE "04/01%"
+AND location LIKE "%GA%"
+AND length(orderid) = 6
+AND orderid <> "Order ID"
+GROUP BY orderID
+HAVING AVG(price) > 1000;
+
+-- What was the average amount spent per account in February?
+SELECT avg(quantity*price)
+FROM BIT_DB.FebSales AS FEB
+LEFT JOIN BIT_DB.customers AS cust
+ON FEB.orderid=cust.order_id
+WHERE length(orderid) = 6
+AND orderid <> "Order ID";
+
+-- How many of each type of headphone were sold in February
+SELECT sum(quantity), Product
+FROM BIT_DB.FebSales
+WHERE Product LIKE "%headphones%"
+AND length(orderid)=6
+AND orderid <>"Order ID"
+GROUP BY Product;
 
 
 
