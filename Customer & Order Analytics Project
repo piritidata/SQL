@@ -46,5 +46,67 @@ FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
 
+--Find a string for price that starts with 5
+SELECT DISTINCT Product, Price
+FROM BIT_DB.FebSales
+WHERE Price LIKE '5%';
+
+-- Find a price string ending in .99
+SELECT DISTINCT Product, Price
+FROM BIT_DB.FebSales
+WHERE Price LIKE '%.99';
+
+-- Find a product that contains the word batteries
+SELECT DISTINCT Product
+FROM BIT_DB.FebSales
+WHERE Product LIKE '%Batteries%';
+
+-- Find the location of orders placed on 02/18/19 01:35
+SELECT location
+FROM BIT_DB.FebSales
+WHERE orderdate = '02/18/19 01:35';
+
+-- Find the total quantity of orders placed on 02/18/19
+SELECT SUM(quantity)
+FROM BIT_DB.FebSales
+WHERE orderdate like '02/18/19%';
+
+-- Find the dates of orders placed between 02/13/19 00:00 and 02/18/19 00:00
+SELECT orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00';
+
+-- Find all the employees that start with the letter T and end with the letter M
+SELECT employee 
+FROM employees 
+WHERE employee_name LIKE 'T_m';
+
+-- Which of the following lines of code meet the following criteria: Start with 14, Have a single character after 14 and end with 9
+
+WHERE employee_ID LIKE '14_9';
+
+-- Find the orderIDs from March Sales where the order ID has the characters 16 in the beginning, followed by one unknown character then a 0 and any number
+WHERE orderID LIKE '16_0%';
+
+-- Find the employees whose names contain a literal underscore character
+SELECT employee
+FROM employees
+WHERE employee_name LIKE '%!_%'
+ESCAPE '!';
+
+-- Find the employee names that end in either a, n, or c
+SELECT name
+FROM employees
+WHERE name LIKE '%a'
+OR name LIKE '%n'
+OR name LIKE '%c';
+
+-- Find the employee names that end in either a, n, or c [MySQL dialect]
+SELECT employee_name
+FROM employees
+WHERE employee_name LIKE '%[anc]';
+
+
+
 
 
